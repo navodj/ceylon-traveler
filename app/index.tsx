@@ -1,23 +1,30 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, ImageBackground, TouchableWithoutFeedback } from 'react-native';
+import { router } from 'expo-router';
 
 export default function StartScreen() {
+  const handlePress = () => {
+    router.push('/page1');
+  };
+
   return (
-    <SafeAreaView style={styles.container}>
-      <ImageBackground
-        source={{ uri: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e' }} // Replace with your actual image
-        style={styles.backgroundImage}
-        resizeMode="cover"
-      >
-        <View style={styles.overlay}>
-          <Text style={styles.subtitle}>traviel</Text>
-          <Text style={styles.title}>Ceylon Traveler</Text>
-          <Text style={styles.description}>
-            Discover the wonders of asia, where nature meets culture
-          </Text>
-        </View>
-      </ImageBackground>
-    </SafeAreaView>
+    <TouchableWithoutFeedback onPress={handlePress}>
+      <SafeAreaView style={styles.container}>
+        <ImageBackground
+          source={{ uri: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e' }}
+          style={styles.backgroundImage}
+          resizeMode="cover"
+        >
+          <View style={styles.overlay}>
+            <Text style={styles.subtitle}>traviel</Text>
+            <Text style={styles.title}>Ceylon Traveler</Text>
+            <Text style={styles.description}>
+              Discover the wonders of asia, where nature meets culture
+            </Text>
+          </View>
+        </ImageBackground>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 }
 
