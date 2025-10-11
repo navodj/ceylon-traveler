@@ -1,4 +1,4 @@
-import useTheme from "../hooks/UseTheme";
+import useTheme from "@/hooks/UseTheme";
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 
@@ -28,9 +28,9 @@ const TabsLayout = () => {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Todos",
+          title: "Home",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="flash-outline" size={size} color={color} />
+            <Ionicons name="home-outline" size={size} color={color} />
           ),
         }}
       />
@@ -38,15 +38,20 @@ const TabsLayout = () => {
         name="Trips"
         options={{
           title: "Trips",
-          tabBarIcon: ({ color, size }) => <Ionicons name="airplane-outline" size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="airplane-outline" size={size} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
-          title: "Settings",
-          tabBarIcon: ({ color, size }) => <Ionicons name="settings" size={size} color={color} />,
+          title: "Account",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person-outline" size={size} color={color} />
+          ),
         }}
+      />
     </Tabs>
   );
 };

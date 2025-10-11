@@ -1,5 +1,10 @@
-// import { Stack } from "expo-router";
+import { Stack } from "expo-router";
+import { ThemeProvider } from "@/hooks/UseTheme";
 
-// export default function RootLayout() {
-//   return <Stack />;
-// }
+export default function RootLayout() {
+  return (
+    <ThemeProvider>
+      <Stack />
+    </ThemeProvider>
+  );
+}
