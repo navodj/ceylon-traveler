@@ -4,7 +4,7 @@ import { router } from 'expo-router';
 
 export default function StartScreen() {
   const handlePress = () => {
-    router.push('/page1');
+    router.push('/inputs');
   };
 
   return (
