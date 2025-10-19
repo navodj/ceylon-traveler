@@ -1,6 +1,14 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, ScrollView, TouchableOpacity } from "react-native";
+import {
+    View,
+    Text,
+    StyleSheet,
+    TextInput,
+    ScrollView,
+    TouchableOpacity,
+} from "react-native";
 import { Button, Chip, Switch } from "react-native-paper";
+import { useRouter } from "expo-router";
 
 const interestsList = [
     "Beaches",
@@ -14,6 +22,7 @@ const interestsList = [
 ];
 
 export default function TravelGuideScreen() {
+    const router = useRouter();
     const [people, setPeople] = useState(1);
     const [days, setDays] = useState(1);
     const [budget, setBudget] = useState("");
@@ -29,6 +38,20 @@ export default function TravelGuideScreen() {
         );
     };
 
+    const handleSubmit = () => {
+        router.push({
+            pathname: "/location",
+            params: {
+                people: people.toString(),
+                days: days.toString(),
+                budget,
+                mealPref: mealPref.toString(),
+                accommodationPref: accommodationPref.toString(),
+                interests: selectedInterests.join(","),
+            },
+        });
+    };
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.title}>Generate personalized{"\n"}travel guide</Text>
@@ -37,19 +60,27 @@ export default function TravelGuideScreen() {
             <View style={styles.section}>
                 <Text style={styles.label}>Select number of people</Text>
                 <View style={styles.stepperContainer}>
-                    <Button mode="outlined" onPress={() => setPeople(Math.max(1, people - 1))}>-</Button>
+                    <Button mode="outlined" onPress={() => setPeople(Math.max(1, people - 1))}>
+                        -
+                    </Button>
                     <Text style={styles.stepperText}>{people}</Text>
-                    <Button mode="outlined" onPress={() => setPeople(people + 1)}>+</Button>
+                    <Button mode="outlined" onPress={() => setPeople(people + 1)}>
+                        +
+                    </Button>
                 </View>
             </View>
 
-            {/* Number of Days */}
+            {/* Days */}
             <View style={styles.section}>
                 <Text style={styles.label}>Select number of days</Text>
                 <View style={styles.stepperContainer}>
-                    <Button mode="outlined" onPress={() => setDays(Math.max(1, days - 1))}>-</Button>
+                    <Button mode="outlined" onPress={() => setDays(Math.max(1, days - 1))}>
+                        -
+                    </Button>
                     <Text style={styles.stepperText}>{days}</Text>
-                    <Button mode="outlined" onPress={() => setDays(days + 1)}>+</Button>
+                    <Button mode="outlined" onPress={() => setDays(days + 1)}>
+                        +
+                    </Button>
                 </View>
             </View>
 
@@ -94,7 +125,7 @@ export default function TravelGuideScreen() {
             </View>
 
             {/* Button */}
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
                 <Text style={styles.buttonText}>Surprise me!</Text>
             </TouchableOpacity>
         </ScrollView>
@@ -102,25 +133,10 @@ export default function TravelGuideScreen() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        padding: 20,
-        alignItems: "center",
-    },
-    title: {
-        fontSize: 28,
-        fontWeight: "700",
-        textAlign: "center",
-        marginBottom: 24,
-    },
-    section: {
-        width: "100%",
-        marginBottom: 20,
-    },
-    label: {
-        fontSize: 16,
-        fontWeight: "600",
-        marginBottom: 8,
-    },
+    container: { padding: 20, alignItems: "center" },
+    title: { fontSize: 28, fontWeight: "700", textAlign: "center", marginBottom: 24 },
+    section: { width: "100%", marginBottom: 20 },
+    label: { fontSize: 16, fontWeight: "600", marginBottom: 8 },
     stepperContainer: {
         flexDirection: "row",
         alignItems: "center",
@@ -130,10 +146,7 @@ const styles = StyleSheet.create({
         borderColor: "#ccc",
         padding: 8,
     },
-    stepperText: {
-        fontSize: 18,
-        fontWeight: "600",
-    },
+    stepperText: { fontSize: 18, fontWeight: "600" },
     input: {
         borderWidth: 1,
         borderColor: "#ccc",
@@ -148,21 +161,12 @@ const styles = StyleSheet.create({
         width: "100%",
         marginBottom: 10,
     },
-    prefLabel: {
-        fontSize: 16,
-    },
-    chipContainer: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-        gap: 8,
-    },
-    chip: {
-        marginBottom: 8,
-    },
+    prefLabel: { fontSize: 16 },
+    chipContainer: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
+    chip: { marginBottom: 8 },
     button: {
         backgroundColor: "#4CAF50",
         paddingVertical: 14,
-        paddingHorizontal: 40,
         borderRadius: 50,
         marginTop: 30,
         width: "100%",
