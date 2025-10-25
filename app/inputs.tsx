@@ -11,24 +11,36 @@ import { Button, Chip, Switch } from "react-native-paper";
 import { useRouter } from "expo-router";
 
 const interestsList = [
-    "Beaches",
-    "Mountains",
-    "Culture",
-    "Food",
-    "Adventure",
-    "Shopping",
-    "History",
-    "Wildlife",
-];
+    "history",
+    "nature",
+    "culture",
+    "archaeology",
+    "scenic",
+    "wildlife",
+    "beach",
+    "religious",
+    "surfing",
+    "hiking",
+    "adventure",
+    "elephants",
+    "waterfall",
+    "botanical",
+    "colonial",
+    "marine",
+    "pilgrimage",
+    "birds",
+    "tea",
+    "art"
+    ];
 
 export default function TravelGuideScreen() {
     const router = useRouter();
     const [people, setPeople] = useState(1);
     const [days, setDays] = useState(1);
     const [budget, setBudget] = useState("");
-    const [mealPref, setMealPref] = useState(true);
-    const [accommodationPref, setAccommodationPref] = useState(true);
     const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
     const toggleInterest = (interest: string) => {
         setSelectedInterests((prev) =>
@@ -38,18 +50,48 @@ export default function TravelGuideScreen() {
         );
     };
 
-    const handleSubmit = () => {
-        router.push({
-            pathname: "/location",
-            params: {
-                people: people.toString(),
-                days: days.toString(),
-                budget,
-                mealPref: mealPref.toString(),
-                accommodationPref: accommodationPref.toString(),
-                interests: selectedInterests.join(","),
-            },
-        });
+    const handleSubmit = async () => {
+        setIsLoading(true);
+        setError(null);
+        try {
+            const response = await fetch("http://10.241.210.243:8000/api/v1/trips/generate-plan", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    num_people: people,
+                    num_days: days,
+                    budget: budget,
+                    interests: selectedInterests,
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.detail || "Something went wrong!");
+            }
+
+            const data = await response.json();
+            console.log("Backend response:", data);
+            // You might want to navigate to a different screen or display the data
+            router.push({
+                pathname: "/location",
+                params: {
+                    people: people.toString(),
+                    days: days.toString(),
+                    budget,
+                    interests: selectedInterests.join(","),
+                    // Pass the response data if needed
+                    responseData: JSON.stringify(data),
+                },
+            });
+        } catch (e: any) {
+            console.error("Error sending data to backend:", e);
+            setError(e.message || "Failed to connect to the backend.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -96,16 +138,7 @@ export default function TravelGuideScreen() {
                 />
             </View>
 
-            {/* Preferences */}
-            <View style={styles.preferenceRow}>
-                <Text style={styles.prefLabel}>Do you prefer meal options?</Text>
-                <Switch value={mealPref} onValueChange={setMealPref} />
-            </View>
 
-            <View style={styles.preferenceRow}>
-                <Text style={styles.prefLabel}>Do you prefer accommodations?</Text>
-                <Switch value={accommodationPref} onValueChange={setAccommodationPref} />
-            </View>
 
             {/* Interests */}
             <View style={styles.section}>
@@ -125,8 +158,15 @@ export default function TravelGuideScreen() {
             </View>
 
             {/* Button */}
-            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-                <Text style={styles.buttonText}>Surprise me!</Text>
+            {error && <Text style={styles.errorText}>{error}</Text>}
+            <TouchableOpacity
+                style={styles.button}
+                onPress={handleSubmit}
+                disabled={isLoading}
+            >
+                <Text style={styles.buttonText}>
+                    {isLoading ? "Generating..." : "Surprise me!"}
+                </Text>
             </TouchableOpacity>
         </ScrollView>
     );
@@ -176,5 +216,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: "center",
         fontWeight: "700",
+    },
+    errorText: {
+        color: "red",
+        textAlign: "center",
+        marginTop: 10,
+        marginBottom: 10,
+        fontSize: 14,
     },
 });
