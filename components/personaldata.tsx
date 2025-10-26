@@ -243,3 +243,24 @@ export default function PersonalDataForm() {
         </SafeAreaView>
     );
 }
+
+
+// --- Styles ---
+const styles = StyleSheet.create({
+    safeContainer: { flex: 1, backgroundColor: "#f8f9fa" },
+    loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "#f8f9fa", padding: 20 },
+    loadingText: { marginTop: 10 }, // Style for loading text
+    header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 15, paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: '#eee', backgroundColor: '#fff' },
+    backButton: { padding: 5 },
+    headerTitle: { fontSize: 18, fontWeight: '600' },
+    container: { padding: 20, paddingBottom: 40 },
+    inputContainer: { marginBottom: 18 },
+    label: { fontSize: 14, fontWeight: '500', color: '#555', marginBottom: 8 },
+    input: { borderWidth: 1, borderColor: "#ccc", borderRadius: 8, paddingHorizontal: 12, paddingVertical: 10, fontSize: 16, backgroundColor: "#fff" },
+    readOnlyInput: { backgroundColor: '#eee', color: '#666' },
+    errorText: { color: "red", fontSize: 14, textAlign: 'center', marginTop: 15, marginBottom: 5 },
+    errorTextLarge: { fontSize: 18, fontWeight: '600', color: 'red', marginBottom: 10 }, // Style for larger error title
+    button: { backgroundColor: "#007bff", padding: 15, borderRadius: 8, alignItems: "center", marginTop: 20 },
+    buttonDisabled: { backgroundColor: "#a0cfff" },
+    buttonText: { color: "#fff", fontSize: 16, fontWeight: "bold" },
+});
