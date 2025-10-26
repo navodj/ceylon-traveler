@@ -154,3 +154,76 @@ export default function LocationScreen() {
     );
 }
 
+// (Styles are the same)
+const styles = StyleSheet.create({
+    safeContainer: {
+        flex: 1,
+        backgroundColor: "#fff",
+    },
+    container: {
+        flex: 1,
+        backgroundColor: "#fff"
+    },
+    header: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        paddingHorizontal: 20,
+        paddingTop: 10,
+    },
+    backText: {
+        color: "#4CAF50",
+        fontSize: 16,
+    },
+    filterText: {
+        color: "#4CAF50",
+        fontSize: 16,
+    },
+    title: {
+        fontSize: 22,
+        fontWeight: "700",
+    },
+    subTitle: {
+        fontSize: 16,
+        fontWeight: "600",
+        marginTop: 20,
+        marginLeft: 20,
+    },
+    mapContainer: {
+        width: "90%",
+        height: 200,
+        alignSelf: "center",
+        borderRadius: 10,
+        overflow: "hidden",
+        marginTop: 10,
+    },
+    map: { width: "100%", height: "100%" },
+    card: {
+        width: "90%",
+        alignSelf: "center",
+        backgroundColor: "#fff",
+        marginTop: 20,
+        borderRadius: 10,
+        overflow: "hidden",
+        elevation: 2,
+    },
+    cardImage: { width: "100%", height: 150 },
+    cardText: {
+        textAlign: "center",
+        padding: 10,
+        fontWeight: "600",
+    },
+    purchaseButton: {
+        backgroundColor: "#4CAF50",
+        borderRadius: 50,
+        paddingVertical: 14,
+        paddingHorizontal: 30,
+        alignSelf: "center",
+        marginTop: 30,
+    },
+    purchaseText: {
+        color: "white",
+        fontSize: 18,
+        fontWeight: "700",
+    },
+});
