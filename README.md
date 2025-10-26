@@ -8,7 +8,7 @@ A smart travel planning mobile application designed to help users discover Sri L
   <img src="<PASTE_SCREENSHOT_URL_HERE>" alt="App Screenshot" width="300"/>
 </p>
 
-**Watch a Demo:** [Link to Video Demo Here](<PASTE_YOUTUBE/VIMEO_LINK_HERE>)
+**Watch a Demo:** [Link to Video Demo Here]([<PASTE_YOUTUBE/VIMEO_LINK_HERE>](https://drive.google.com/file/d/1DwUg6IqhQZ-mjxQIRbZoa9CmM9emSuqt/view?usp=drivesdk))
 
 ---
 
