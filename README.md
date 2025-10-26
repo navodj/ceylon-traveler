@@ -4,9 +4,10 @@ A smart travel planning mobile application designed to help users discover Sri L
 
 ---
 
-<p align="center">
-  <img src="<PASTE_SCREENSHOT_URL_HERE>" alt="App Screenshot" width="300"/>
-</p>
+| Starting page | Sign In | Email verifications   | Trip  | Payment     |
+|------------|-----------|-------------|-----------|
+| ![Light Mode Screenshot](https://github.com/navodj/ceylon-traveler/blob/master/assets/i1.jpg) | ![Dark Mode Screenshot](SS/setting-darkmode.png) | ![Edit Todos Screenshot](SS/edit-todos.png) | ![Light Mode Screenshot](SS/todos.png) |![Edit Todos Screenshot](SS/edit-todos.png) |
+
 
 **Watch a Demo:** [Link to Video Demo Here]([<PASTE_YOUTUBE/VIMEO_LINK_HERE>](https://drive.google.com/file/d/1DwUg6IqhQZ-mjxQIRbZoa9CmM9emSuqt/view?usp=drivesdk))
 
