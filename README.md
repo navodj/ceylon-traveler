@@ -1,50 +1,119 @@
-# Welcome to your Expo app 👋
+# Ceylon Traveler 🇱🇰
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A smart travel planning mobile application designed to help users discover Sri Lanka by generating personalized itineraries based on their preferences.
 
-## Get started
+---
 
-1. Install dependencies
+<p align="center">
+  <img src="<PASTE_SCREENSHOT_URL_HERE>" alt="App Screenshot" width="300"/>
+</p>
 
-   ```bash
-   npm install
-   ```
+**Watch a Demo:** [Link to Video Demo Here](<PASTE_YOUTUBE/VIMEO_LINK_HERE>)
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## ✨ Features
 
-In the output, you'll find options to open the app in a
+* **Personalized Itinerary Generation:** Creates multi-day travel plans based on user inputs like number of people, duration, budget, and interests.
+* **Interactive Map View:** Displays the planned route and key locations for the entire trip and for each day.
+* **Daily Plan Details:** Shows specific attractions, descriptions, images, and map routes for each day of the trip (with a draggable bottom sheet).
+* **User Authentication:** Secure sign-up and sign-in using Clerk.
+* **User Profile Management:** Allows users to view and update their personal information (requires backend connection).
+* **Dark/Light Mode:** Supports theme switching for user preference.
+* **Payment Flow UI:** Includes screens for reservation details, payment information, and confirmation.
+* **Settings Screen:** Access to profile, password changes (via auth), theme toggle, and notification preferences.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🛠️ Tech Stack
 
-## Get a fresh project
+* **Frontend:** React Native (Expo SDK) + TypeScript
+* **Navigation:** Expo Router
+* **Authentication:** Clerk (@clerk/clerk-expo)
+* **Mapping:** `react-native-maps`
+* **UI Components:** `react-native-paper`, `@gorhom/bottom-sheet`, `react-native-calendars`, Custom Components
+* **Styling:** React Native StyleSheet
+* **State Management:** React Hooks (`useState`, `useContext`)
+* **Backend:** FastAPI (Python) - *(Note: Requires separate setup and deployment)*
+* **Database:** Supabase (PostgreSQL) - *Accessed via Backend*
+* **Routing Service:** OpenRouteService - *Accessed via Backend*
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
-```
+## 🚀 Getting Started
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
 
-## Learn more
+### Prerequisites
 
-To learn more about developing your project with Expo, look at the following resources:
+* [Node.js](https://nodejs.org/) (LTS version recommended)
+* [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+* [Git](https://git-scm.com/)
+* [Expo Go](https://expo.dev/go) app installed on your physical Android/iOS device or an emulator/simulator setup.
+* Python environment (e.g., v3.8+) for the backend.
+* Access to a running instance of the [Ceylon Traveler Backend API](<#link-to-your-backend-repo-if-available>) (locally or deployed).
+* Clerk Account and Supabase Account for API keys.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Installation
 
-## Join the community
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/your-username/ceylon-traveler.git](https://github.com/your-username/ceylon-traveler.git) 
+    cd ceylon-traveler
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    # yarn install
+    ```
 
-Join our community of developers creating universal apps.
+### Configuration
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+1.  **Create an environment file:** Create a file named `.env` in the root directory of the project.
+2.  **Add environment variables:** Populate the `.env` file with your keys and API URL:
+    ```env
+    # Clerk Publishable Key (Get from Clerk Dashboard)
+    EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY="pk_test_YOUR_CLERK_PUBLISHABLE_KEY"
+
+    # Base URL for your running backend API
+    EXPO_PUBLIC_API_URL="http://YOUR_BACKEND_IP_ADDRESS:8000" 
+    ```
+   
+
+### Running the Backend
+
+*(Adjust based on your backend setup)*
+1.  Navigate to your backend project directory.
+2.  Set up backend environment variables (Supabase, Clerk Secret, ORS API Key).
+3.  Install backend dependencies (e.g., `pip install -r requirements.txt`).
+4.  Run the FastAPI server (ensure `--host 0.0.0.0` for device testing):
+    ```bash
+    uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload 
+    ```
+
+### Running the App
+
+1.  **Start the Expo development server:**
+    ```bash
+    npx expo start
+    ```
+2.  **Open the app:** Scan the QR code with Expo Go or use an emulator/simulator.
+
+---
+
+## 📂 Project Structure
+
+For a detailed explanation of the project's folder structure, please see [STRUCTURE.md](STRUCTURE.md).
+
+---
+
+## 🤝 Contributing (Optional)
+
+Contributions are welcome! Please fork the repository, create a feature branch, and submit a pull request.
+
+---
+
+## 📜 License (Optional)
+
+This project is licensed under the MIT License - see the `LICENSE` file for details.
