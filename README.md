@@ -2,12 +2,13 @@
 
 A smart travel planning mobile application designed to help users discover Sri Lanka by generating personalized itineraries based on their preferences.
 
+Here's a visual journey through the key interfaces of Ceylon Traveler:
+
+| 1. Welcome Screen             | 2. Sign Up                                | 3. Email Verification                 | 4. Trip Itinerary                     | 5. Payment Flow                       |
+| :---------------------------: | :---------------------------------------: | :-----------------------------------: | :-----------------------------------: | :------------------------------------: |
+| <img src="<[URL_FIRST_SCREEN](https://github.com/navodj/ceylon-traveler/blob/master/assets/i2.jpg)>" alt="Welcome Screen" width="200"/> | <img src="<(https://github.com/navodj/ceylon-traveler/blob/master/assets/i1.jpg)>" alt="Sign Up Screen" width="200"/> | <img src="<(https://github.com/navodj/ceylon-traveler/blob/master/assets/i3.jpg)>" alt="Email Verification" width="200"/> | <img src="<(https://github.com/navodj/ceylon-traveler/blob/master/assets/i4.jpg)>" alt="Trip Itinerary" width="200"/> | <img src="<(https://github.com/navodj/ceylon-traveler/blob/master/assets/i5.jpg)>" alt="Payment Screen" width="200"/> |
+
 ---
-
-| Starting page | Sign In | Email verifications   | Trip  | Payment     |
-|------------|-----------|-------------|-----------|
-| ![Light Mode Screenshot](https://github.com/navodj/ceylon-traveler/blob/master/assets/i1.jpg) | ![Dark Mode Screenshot](SS/setting-darkmode.png) | ![Edit Todos Screenshot](SS/edit-todos.png) | ![Light Mode Screenshot](SS/todos.png) |![Edit Todos Screenshot](SS/edit-todos.png) |
-
 
 **Watch a Demo:** [Link to Video Demo Here]([<PASTE_YOUTUBE/VIMEO_LINK_HERE>](https://drive.google.com/file/d/1DwUg6IqhQZ-mjxQIRbZoa9CmM9emSuqt/view?usp=drivesdk))
 
