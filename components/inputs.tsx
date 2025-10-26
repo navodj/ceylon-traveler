@@ -242,24 +242,22 @@
 //         fontWeight: "600",
 //     },
 // });
-//
 
-
-import React, { useState, useEffect } from "react";
+import { useAuth } from "@clerk/clerk-expo"; // <-- 1. IMPORT useAuth
+import { useRouter } from "expo-router";
+import React, { useState } from "react";
 import {
-    View,
-    Text,
-    StyleSheet,
-    TextInput,
-    ScrollView,
-    TouchableOpacity,
+    ActivityIndicator,
     Modal,
-    ActivityIndicator
+    ScrollView,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
 } from "react-native";
 import { Button, Chip } from "react-native-paper";
-import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useAuth } from "@clerk/clerk-expo"; // <-- 1. IMPORT useAuth
 
 // --- (Interests list is the same) ---
 const interestsList = [
@@ -268,8 +266,6 @@ const interestsList = [
     "waterfall", "botanical", "colonial", "marine", "pilgrimage",
     "birds", "tea", "art"
 ];
-
-
 
 export default function TravelGuideScreen() {
     const router = useRouter();
@@ -280,34 +276,6 @@ export default function TravelGuideScreen() {
     const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-
-    const messages = [
-        "Generating your plan...",
-        "Analyzing best routes...",
-        "Exploring your interests...",
-        "Finding hidden gems...",
-        "Almost done! Preparing your trip..."
-    ];
-
-    const [messageIndex, setMessageIndex] = useState(0);
-
-// Rotate messages every 2 seconds while loading
-    // Rotate messages every 2 seconds while loading
-    useEffect(() => {
-        let interval: ReturnType<typeof setInterval> | null = null;
-
-        if (isLoading) {
-            interval = setInterval(() => {
-                setMessageIndex((prev) => (prev + 1) % messages.length);
-            }, 2000);
-        } else {
-            setMessageIndex(0); // reset to first message when not loading
-        }
-
-        return () => {
-            if (interval) clearInterval(interval);
-        };
-    }, [isLoading]);
 
     const toggleInterest = (interest: string) => {
         setSelectedInterests((prev) =>
@@ -380,7 +348,7 @@ export default function TravelGuideScreen() {
                 <View style={styles.modalContainer}>
                     <View style={styles.modalContent}>
                         <ActivityIndicator size="large" color="#4CAF50" />
-                        <Text style={styles.loadingText}>{messages[messageIndex]}</Text>
+                        <Text style={styles.loadingText}>Generating your plan...</Text>
                     </View>
                 </View>
             </Modal>

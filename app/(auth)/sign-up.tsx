@@ -1,19 +1,19 @@
-import { authStyles } from "@/assets/style/auth_styles";
-import { COLORS } from "@/constants/colors";
-import { useSignUp } from "@clerk/clerk-expo";
-import { Image } from "expo-image";
-import { useRouter } from "expo-router";
-import { useState } from "react";
 import {
+    View,
+    Text,
     Alert,
     KeyboardAvoidingView,
     Platform,
     ScrollView,
-    Text,
     TextInput,
     TouchableOpacity,
-    View,
 } from "react-native";
+import { useRouter } from "expo-router";
+import { useSignUp } from "@clerk/clerk-expo";
+import { useState } from "react";
+import { authStyles } from "@/assets/style/auth_styles"
+import { Image } from "expo-image";
+import { COLORS } from "@/constants/colors";
 
 import { Ionicons } from "@expo/vector-icons";
 import VerifyEmail from "./verify-email";

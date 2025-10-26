@@ -142,7 +142,7 @@ export default function LocationScreen() {
                     </TouchableOpacity>
                 ))}
 
-                Purchase Button
+                 Purchase Button
                 <TouchableOpacity
                     style={styles.purchaseButton}
                     onPress={() => router.push("/payment1")}

@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import {
-    View,
-    Text,
-    StyleSheet,
-    TextInput,
-    ScrollView,
-    TouchableOpacity,
-    ActivityIndicator,
-    Alert
-} from "react-native";
-import { useRouter } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuth } from "@clerk/clerk-expo";
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from "expo-router";
+import React, { useEffect, useState } from "react";
+import {
+    ActivityIndicator,
+    Alert,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 type UserProfile = {
     first_name: string;
@@ -44,36 +44,26 @@ export default function PersonalDataForm() {
     useEffect(() => {
         const fetchUserData = async () => {
             setIsLoading(true);
-            setError(null); // Clear previous errors
+            setError(null); 
             try {
                 const token = await getToken();
                 if (!token) throw new Error("Authentication failed. Please sign in again.");
 
-                const response = await fetch("http://10.163.3.243:8000/api/v1/users/me", {
-                    headers: { "Authorization": Bearer ${token} }
+                const url = "http://10.163.3.34:8000/api/v1/users/me"; // Define URL
+                
+                // --- ADD THESE LOGS ---
+                console.log("Attempting to fetch:", url);
+                console.log("Using token:", token ? token.substring(0, 10) + "..." : "No Token"); 
+                // --- END LOGS ---
+
+                const response = await fetch(url, { // Use the url variable
+                    headers: { "Authorization": `Bearer ${token}` }
                 });
 
-                // Check for network errors first
-                if (!response.ok) {
-                    // Try to get error detail from backend response
-                    let errorDetail = "Failed to fetch user data.";
-                    try {
-                        const errorData = await response.json();
-                        errorDetail = errorData.detail || errorDetail;
-                    } catch (jsonError) {
-                        // If response is not JSON, use status text
-                        errorDetail = response.statusText || errorDetail;
-                    }
-                    throw new Error(errorDetail);
-                }
-
-                const data: UserProfile = await response.json();
-                setProfileData(data);
-                setOriginalData(data);
+                // ... rest of the function ...
 
             } catch (e: any) {
-                // Set the error state here
-                setError(e.message || "An error occurred while fetching data.");
+                setError(e.message || "An error occurred while fetching data."); 
                 console.error("Fetch User Data Error:", e);
             } finally {
                 setIsLoading(false);
@@ -104,7 +94,7 @@ export default function PersonalDataForm() {
             const updatePayload: Partial<UserProfile> = {};
             editableFields.forEach(field => {
                 if (profileData[field] !== originalData[field]) {
-                    // Ensure field is a valid key before assigning
+                    // Ensure `field` is a valid key before assigning
                     (updatePayload as any)[field] = profileData[field] ?? null;
                 }
             });
@@ -115,11 +105,11 @@ export default function PersonalDataForm() {
                 return;
             }
 
-            const response = await fetch("http://10.163.3.243:8000/api/v1/users/me", {
+            const response = await fetch("http://10.163.3.34:8000/api/v1/users/me", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": Bearer ${token}
+                    "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify(updatePayload)
             });
@@ -219,7 +209,7 @@ export default function PersonalDataForm() {
                             keyboardType={
                                 ["mobile_phone", "post_code"].includes(field) ? "numeric" : "default"
                             }
-                            placeholder={Enter your ${field.replace('_', ' ')}}
+                            placeholder={`Enter your ${field.replace('_', ' ')}`}
                             placeholderTextColor="#999"
                         />
                     </View>
@@ -244,12 +234,11 @@ export default function PersonalDataForm() {
     );
 }
 
-
 // --- Styles ---
 const styles = StyleSheet.create({
     safeContainer: { flex: 1, backgroundColor: "#f8f9fa" },
     loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "#f8f9fa", padding: 20 },
-    loadingText: { marginTop: 10 }, // Style for loading text
+    loadingText: { marginTop: 10 }, 
     header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 15, paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: '#eee', backgroundColor: '#fff' },
     backButton: { padding: 5 },
     headerTitle: { fontSize: 18, fontWeight: '600' },
